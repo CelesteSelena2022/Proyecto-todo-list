@@ -1,9 +1,9 @@
-import { TextField, Button, Box, FormControl, helperText } from "@mui/material";
+import { TextField, Button, Box, FormControl } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 import { useFormik } from "formik";
 
-export default function Form() {
+export default function Form({ addItem, items }) {
 
     const formik = useFormik({
         initialValues: {
@@ -22,7 +22,7 @@ export default function Form() {
                 errors.Itemdescription =
                     "La tarea debe tener al menos 5 caracteres";
             } else if (
-                tasks.some((task) => task.Itemdescription === values.Itemdescription)
+                items.some((item) => item.Itemdescription === values.Itemdescription)
             ) {
                 errors.Itemdescription =
                     "Parece que esta tarea ya existe. Por favor, intenta con otra";
@@ -30,6 +30,7 @@ export default function Form() {
             return errors;
         },
         onSubmit: (values, { resetForm }) => {
+            addItem({ ...values, id: crypto.randomUUID() });
             resetForm();
         },
     });
