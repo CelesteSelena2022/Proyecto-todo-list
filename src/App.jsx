@@ -2,11 +2,22 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Form from "./components/Form/Form"
 // import RenderItem from "./components/Form/RenderItem"
-import Item from "./components/Form/Item"
 import SelectComponent from "./components/Form/SelectComponent"
 import { Box } from "@mui/material";
 
+import { useState } from "react";
+
 function App() {
+
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("items")) || []
+  );
+
+  const addItem = (newItem) => {
+    const UpdatedItems = [...items, newItem];
+    setItems(UpdatedItems);
+    localStorage.setItem("items", JSON.stringify(UpdatedItems));
+  };
 
   return (
     <Box sx={{display:"flex", flexDirection:"column", minHeight:"100vh", alignItems:"center"}}>
@@ -14,10 +25,9 @@ function App() {
 
       <Box sx={{flexGrow: "1"}}>
           
-          <Form />
+          <Form addItem={addItem} items={items}/>
           <SelectComponent />
 
-          <Item/>
       </Box>
 
       <Footer />
