@@ -26,7 +26,7 @@ function App() {
       <Box sx={{flexGrow: "1"}}>
           
           <Form addItem={addItem} items={items}/>
-          <SelectComponent />
+          <SelectComponent setItems={setItems} />
           <RenderItem items={items}/>
 
       </Box>
