@@ -1,7 +1,7 @@
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Form from "./components/Form/Form"
-// import RenderItem from "./components/Form/RenderItem"
+import RenderItem from "./components/Form/RenderItem"
 import SelectComponent from "./components/Form/SelectComponent"
 import { Box } from "@mui/material";
 
@@ -27,6 +27,7 @@ function App() {
           
           <Form addItem={addItem} items={items}/>
           <SelectComponent />
+          <RenderItem items={items}/>
 
       </Box>
 
