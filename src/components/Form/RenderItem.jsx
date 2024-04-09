@@ -1,7 +1,7 @@
 import Item from "./Item";
 import { Box, Typography } from "@mui/material";
 
-export default function renderItem({ items }) {
+export default function renderItem({ items, deleteItem }) {
     return (
         <Box>
             {items.length === 0 ? (
@@ -15,6 +15,7 @@ export default function renderItem({ items }) {
                         id={item.id}
                         itemDescription={item.Itemdescription}
                         state={item.state}
+                        deleteItem={deleteItem}
                     />
                 )) 
             )}

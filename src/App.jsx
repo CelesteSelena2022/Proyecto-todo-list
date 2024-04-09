@@ -19,6 +19,13 @@ function App() {
     localStorage.setItem("items", JSON.stringify(UpdatedItems));
   };
 
+  const deleteItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+
+    const UpdatedItems = items.filter((item) => item.id !== id);
+    localStorage.setItem("items", JSON.stringify(UpdatedItems));
+  };
+
   return (
     <Box sx={{display:"flex", flexDirection:"column", minHeight:"100vh", alignItems:"center"}}>
       <Header />
@@ -27,7 +34,7 @@ function App() {
           
           <Form addItem={addItem} items={items}/>
           <SelectComponent setItems={setItems} />
-          <RenderItem items={items}/>
+          <RenderItem items={items} deleteItem={deleteItem} />
 
       </Box>
 

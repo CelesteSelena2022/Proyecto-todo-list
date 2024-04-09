@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText, IconButton, Box, Typography } from '@mui/
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-export default function Item({ itemDescription, id }) {
+export default function Item({ itemDescription, id, deleteItem }) {
 
     const handleDelete = (id) => {
         console.log(`Eliminar elemento con ID ${id}`);
@@ -18,9 +18,9 @@ export default function Item({ itemDescription, id }) {
                 <ListItem sx={{ borderBottom: "#9C9C9C solid 1px" }}>
                     <ListItemText primary={itemDescription} />
                     <IconButton edge="end" aria-label="editar" onClick={() => handleCheck(id)}>
-                        <CheckBoxIcon color="primary" />
+                        <CheckBoxIcon />
                     </IconButton>
-                    <IconButton edge="end" aria-label="eliminar" onClick={() => handleDelete(id)}>
+                    <IconButton edge="end" aria-label="eliminar" onClick={() => deleteItem(id)}>
                         <DeleteIcon />
                     </IconButton>
                 </ListItem>
