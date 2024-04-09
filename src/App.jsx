@@ -19,15 +19,32 @@ function App() {
     localStorage.setItem("items", JSON.stringify(UpdatedItems));
   };
 
+  const deleteItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+
+    const UpdatedItems = items.filter((item) => item.id !== id);
+    localStorage.setItem("items", JSON.stringify(UpdatedItems));
+  };
+
+  const handleCheck = (id) => {
+    const newArray = [...items];
+    const completedItems = newArray.find((item) => item.id === id);
+
+    completedItems.state = !completedItems.state;
+
+    setItems(newArray);
+    localStorage.setItem("items", JSON.stringify(newArray));
+  };
+
   return (
-    <Box sx={{display:"flex", flexDirection:"column", minHeight:"100vh", alignItems:"center"}}>
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", alignItems: "center" }}>
       <Header />
 
-      <Box sx={{flexGrow: "1"}}>
-          
-          <Form addItem={addItem} items={items}/>
-          <SelectComponent setItems={setItems} />
-          <RenderItem items={items}/>
+      <Box sx={{ flexGrow: "1" }}>
+
+        <Form addItem={addItem} items={items} />
+        <SelectComponent setItems={setItems} />
+        <RenderItem items={items} deleteItem={deleteItem} handleCheck={handleCheck} />
 
       </Box>
 
